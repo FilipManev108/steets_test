@@ -110,7 +110,7 @@ function customEncrypt($key, $string){ //key has to be all caps string with leng
             $encrypted .= chr($stringCharOrd);
         }
     }
-    echo $encrypted;
+    return $encrypted;
 }
 
 function customDecrypt($key, $string){ //key has to be all caps string with length at least 9, string has to be day od the week in string
@@ -123,27 +123,26 @@ function customDecrypt($key, $string){ //key has to be all caps string with leng
         $shifter = $keyCharOrd - 65;
         if($stringCharOrd >= 97 && $stringCharOrd <= 122){
             $stringCharOrd -= $shifter;
-            if($stringCharOrd < 97){ //if it goes beyond 'z' start from 'a'
+            if($stringCharOrd < 97){ //if it goes bellow 'a' start from 'z'
                 $stringCharOrd = 123 - (97 - $stringCharOrd);
             }
             $decrypted .= chr($stringCharOrd);
         } else if ($stringCharOrd >= 65 && $stringCharOrd <= 90) {
             $stringCharOrd -= $shifter;
-            if($stringCharOrd < 65){ //if it goes beyond 'Z' start from 'A'
+            if($stringCharOrd < 65){ //if it goes bellow 'A' start from 'Z'
                 $stringCharOrd = 91 - (65 - $stringCharOrd);
             }
             $decrypted .= chr($stringCharOrd);
         }
     }
-    echo $decrypted;
+    return $decrypted;
 }
 
 
 
 
 
-$string = "Monday";
-$key = "QWERTYWAA";
+
 // $encrypted = encrypt($plaintext);
 // $decrypted = decrypt($encrypted);
 // $hashText = hash('sha256', $plaintext);
@@ -151,6 +150,9 @@ $key = "QWERTYWAA";
 
 // var_dump(base64_encode($plaintext), base64_decode(base64_encode($plaintext)), $hashText);
 // var_dump(ord('a'));
+$string = "Monday";
+$key = "QWERTYWAA";
+
 $encrypt = customEncrypt($key, $string);
 $decrypt = customDecrypt($key, $encrypt);
 
