@@ -2,6 +2,8 @@
 require_once './main/php/functions/redirect.php';
 require_once './main/php/functions/array_debugger.php';
 
+
+
 function br(){
     echo '<br>';
 }
@@ -12,6 +14,7 @@ function br(){
 // json_encode(arrDebug($_POST));
 
 function checkPrime($num){
+    $num = abs($num);
     if($num == 1) return false;
     if($num % 2 == 0) return ($num == 2);
     
@@ -24,13 +27,15 @@ function checkPrime($num){
     return true;
 }
 
-
 function get30PrimeYears($year){
     $arr = [];
     while (count($arr) <= 30) {
-       if(checkPrime($year)){
-           $arr[] = ['year' => $year, 'christmass' => '']; 
-       }
+        if($year <= 0){
+            break; //prime numbers cannot be negative
+        }
+        if(checkPrime(abs($year))){
+            $arr[] = ['year' => $year, 'christmass' => '']; 
+        }
        $year--;
     }
     return $arr;
@@ -44,10 +49,17 @@ function getChristmassDays($arr){
     return $arr;
 }
 
-// $year = 2023;
 
-// $arr = get30PrimeYears($year);
-// $arr = getChristmassDays($arr);
+
+
+$year = 23;
+
+$arr = get30PrimeYears($year);
+
+$arr = getChristmassDays($arr);
+
+print_r($arr);
+die();
 
 // arrDebug(openssl_get_cipher_methods());
 define("ENCRYPTION_METHOD", "AES-128-CBC");
@@ -61,6 +73,9 @@ define("KEY", "asd");
  *
  * 
  */
+
+
+
 function encrypt($data) {
     $key = KEY;
     $plaintext = $data;
@@ -87,7 +102,8 @@ function decrypt($data) {
         return $original_plaintext;
     }
 }
-
+// CXVQEXCY
+// Wendsday -> Csahaw
 function customEncrypt($key, $string){ //key has to be all caps string with length at least 9, string has to be day od the week in string
     $keyArr = str_split($key);
     $stringArr = str_split($string);
@@ -140,9 +156,8 @@ function customDecrypt($key, $string){ //key has to be all caps string with leng
 
 
 
-
-
-
+var_dump(getenv('ENCRYPTION_KEY'));
+die();
 // $encrypted = encrypt($plaintext);
 // $decrypted = decrypt($encrypted);
 // $hashText = hash('sha256', $plaintext);
