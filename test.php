@@ -52,14 +52,14 @@ function getChristmassDays($arr){
 
 
 
-$year = 23;
+// $year = 23;
 
-$arr = get30PrimeYears($year);
+// $arr = get30PrimeYears($year);
 
-$arr = getChristmassDays($arr);
+// $arr = getChristmassDays($arr);
 
-print_r($arr);
-die();
+// print_r($arr);
+// die();
 
 // arrDebug(openssl_get_cipher_methods());
 define("ENCRYPTION_METHOD", "AES-128-CBC");
@@ -156,8 +156,8 @@ function customDecrypt($key, $string){ //key has to be all caps string with leng
 
 
 
-var_dump(getenv('ENCRYPTION_KEY'));
-die();
+// var_dump(getenv('ENCRYPTION_KEY'));
+// die();
 // $encrypted = encrypt($plaintext);
 // $decrypted = decrypt($encrypted);
 // $hashText = hash('sha256', $plaintext);
@@ -166,13 +166,13 @@ die();
 // var_dump(base64_encode($plaintext), base64_decode(base64_encode($plaintext)), $hashText);
 // var_dump(ord('a'));
 $string = "Monday";
-$key = "QWERTYWAA";
+$key = "ZXCAEWQAS";
 
 $encrypt = customEncrypt($key, $string);
-$decrypt = customDecrypt($key, $encrypt);
+// $decrypt = customDecrypt($key, $encrypt);
 
 echo $encrypt . PHP_EOL;
-echo $decrypt;
+// echo $decrypt;
 
 
 
