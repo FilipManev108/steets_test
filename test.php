@@ -169,10 +169,10 @@ $string = "Monday";
 $key = "11BBBBB";
 
 $encrypt = customEncrypt($key, $string);
-$decrypt = customDecrypt($key, $encrypt);
+// $decrypt = customDecrypt($key, $encrypt);
 
-echo $encrypt . PHP_EOL;
-echo $decrypt;
+// echo $encrypt . PHP_EOL;
+// echo $decrypt;
 
 
 
