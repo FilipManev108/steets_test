@@ -9,9 +9,7 @@ checkPost();
 
 $year = (int)$_POST['input'];
 
-$env = parse_ini_file('../../../.env');
-
-$key = $env['ENCRYPTION_KEY'];
+$key = getKey();
 
 $yr = new Year($year);
 

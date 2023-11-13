@@ -26,7 +26,7 @@ class Decrypt extends Cipher
 
     public function decryptDays($arr){
         foreach($arr as $key => $val){
-            $arr[$key] = $this->decryptDay($val);
+            $arr[$key]['encrypted_day'] = $this->decryptDay($val['encrypted_day']);
         }
         return $arr;
     }

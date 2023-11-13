@@ -8,3 +8,4 @@ require_once '../classes/encription/Decrypt.php';
 require_once '../classes/year/Year.php';
 
 require_once '../functions/check_post.php';
+require_once '../functions/get_key.php';
