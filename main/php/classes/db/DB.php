@@ -19,21 +19,22 @@ class DB {
         }
     }
 
-    public static function connect() {
+    public static function connect(): object {
         if (is_null(self::$instance)){
             new self();
         }
         return self::$instance;
     }
 
-    public static function write($arr){
+    public static function write(array $arr): bool {
         $pdo = DB::connect();
         $req = DB::requisite($arr);
         $stmt = $pdo->prepare($req['sql']);
         return $stmt->execute($req['data']);
     }
 
-    private static function requisite($arr){
+    private static function requisite(array $arr): array {
+        // the IGNORE keyword means the query will not insert already existing years
         $sql = 'INSERT IGNORE INTO prime_years (year, encrypted_day) VALUES ';
         $SQLvalues = '';
         $data = [];
@@ -54,9 +55,9 @@ class DB {
         return $req;
     }
 
-    public static function read($input){
+    public static function read(int $input): array {
         $pdo = DB::connect();
-        $sql = 'SELECT year, encrypted_day FROM prime_years WHERE year <= :year ORDER BY year DESC LIMIT 30';
+        $sql = 'SELECT * FROM prime_years WHERE year <= :year ORDER BY year DESC LIMIT 30';
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['year' => $input]);
         return $stmt->fetchAll();

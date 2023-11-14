@@ -1,6 +1,6 @@
 <?php
-require_once './main/php/functions/redirect.php';
-require_once './main/php/functions/array_debugger.php';
+// require_once './main/php/functions/redirect.php';
+// require_once './main/php/functions/array_debugger.php';
 
 
 
@@ -15,8 +15,15 @@ function br(){
 
 function checkPrime($num){
     $num = abs($num);
+    
     if($num == 1) return false;
-    if($num % 2 == 0) return ($num == 2);
+    $sieve = [2, 3, 5];
+    for ($i=0; $i < count($sieve); $i++) { 
+        if($num % $sieve[$i] == 0) return ($num == $sieve[$i]);
+    }
+    $root = sqrt($num);
+    if($root == floor($root)) return false;
+    $root = floor($root);
     
     $root = floor(sqrt($num));
     for ($i=3; $i < $root; $i+=2) { 
@@ -26,6 +33,21 @@ function checkPrime($num){
     }
     return true;
 }
+$num = 15;
+$root = sqrt($num);
+
+
+var_dump($root);
+var_dump(floor($root));
+var_dump($root == floor($root));
+echo '<br>';
+for ($i=2000; $i > 0; $i--) { 
+    if(checkPrime($i)){
+        echo $i . PHP_EOL;
+    }
+
+}
+die();
 
 function get30PrimeYears($year){
     $arr = [];

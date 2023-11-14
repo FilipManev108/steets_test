@@ -8,11 +8,11 @@ class Decrypt extends Cipher
 {
     private $flag = false;
 
-    public function __construct($key){
+    public function __construct(string $key){
         parent::__construct($key);
     }
 
-    protected function shift($stringCharOrd, $shifter, $index){
+    protected function shift(int $stringCharOrd, int $shifter, array $index): int {
         $stringCharOrd -= $shifter;
         if($stringCharOrd < $index['a']){ //if it goes bellow 'a' start from 'z'
             $stringCharOrd = ($index['z'] + 1) - ($index['a'] - $stringCharOrd);
@@ -20,11 +20,11 @@ class Decrypt extends Cipher
         return $stringCharOrd;
     }
 
-    public function decryptDay($string){
+    public function decryptDay(string $string): string {
         return $this->process($string, $this->flag);
     }
 
-    public function decryptDays($arr){
+    public function decryptDays(array $arr): array{
         foreach($arr as $key => $val){
             $arr[$key]['encrypted_day'] = $this->decryptDay($val['encrypted_day']);
         }

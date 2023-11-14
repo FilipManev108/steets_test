@@ -9,12 +9,12 @@ abstract class Cipher
     private static $lower = ['a' => 65, 'z' => 90];
     private static $upper = ['a' => 97, 'z' => 122];
 
-    protected function __construct($key){
+    protected function __construct(string $key){
         $this->key = strtoupper(md5($key));
     }
 
     //this is a custom encryption method which uses an algorythim based on the 0-255 byte values for the key characters
-    protected function process($string, $flag){
+    protected function process(string $string, bool $flag): string {
         $string = $flag ? $string : base64_decode($string);
         $keyArr = str_split($this->key);
         $stringArr = str_split($string);
@@ -31,5 +31,5 @@ abstract class Cipher
         return $flag ? base64_encode($encrypted) : $encrypted;
     }
 
-    protected abstract function shift($stringCharOrd, $shifter, $indexes);
+    protected abstract function shift(int $stringCharOrd, int $shifter, array $indexes): int;
 }

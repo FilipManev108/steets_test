@@ -29,7 +29,3 @@ try {
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
-
-
-// $key = $env['KEY'];
-// $year = 2030;

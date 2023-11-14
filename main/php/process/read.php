@@ -5,20 +5,16 @@ use Encription\Decrypt;
 
 require_once './autoload.php';
 
-// checkPost();
+checkPost();
+
+$year = (int)$_POST['input'];
 
 $key = getKey();
 
-$response = DB::read(2000);
-
-
-
-$yearArr = [];
-
+$response = DB::read($year);
 
 $de = new Decrypt($key);
 
 $yearArr = $de->decryptDays($response);
-
 
 echo json_encode($yearArr);

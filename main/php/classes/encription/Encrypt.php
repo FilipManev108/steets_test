@@ -8,11 +8,11 @@ class Encrypt extends Cipher
 {
     private $flag = true;
 
-    public function __construct($key){
+    public function __construct(string $key){
         parent::__construct($key);
     }
 
-    protected function shift($stringCharOrd, $shifter, $index){
+    protected function shift(int $stringCharOrd, int $shifter, array $index): int {
         $stringCharOrd += $shifter;
         if($stringCharOrd > $index['z']){ //if it goes beyond 'z' start from 'a'
             $stringCharOrd = ($index['a'] - 1) + ($stringCharOrd - $index['z']);
@@ -20,11 +20,11 @@ class Encrypt extends Cipher
         return $stringCharOrd;
     }
 
-    private function encryptDay($string){
+    private function encryptDay(string $string): string {
         return $this->process($string, $this->flag);
     }
 
-    public function encryptDays($arr){
+    public function encryptDays(array $arr): array {
         foreach($arr as $key => $val){
             $arr[$key] = $this->encryptDay($val);
         }

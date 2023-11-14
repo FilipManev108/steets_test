@@ -13,6 +13,15 @@
     </head>
     <body class="text-center">
         <h1>Prime Year Processor</h1>
+        <small class="d-block">- Discover whether your entered year is prime or not!</small>
+        <small class="d-block"
+            >- You will get 30 total prime years counting backwards from your
+            entered year!</small
+        >
+        <small class="d-block"
+            >- You will find out what weekday is christmass for the prime year
+            as well!</small
+        >
         <div class="container pt-5">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -21,6 +30,7 @@
                             <label for="year" class="form-label"
                                 >Enter Year</label
                             >
+                            <small id="error" class="text-danger d-block"></small>
                             <input
                                 type="number"
                                 class="form-control"
@@ -33,6 +43,21 @@
                             Submit
                         </button>
                     </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 offset-3">
+                    <table class="table table-striped d-none">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Prime Years</th>
+                                <th scope="col">Christmass Day (Dec. 25th)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="display_response"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
