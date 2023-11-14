@@ -7,10 +7,10 @@ mainForm.submit((e) => {
     e.preventDefault();
     const year = $("#year").val();
     validate(year, $("#error"));
-    sendRequest("./app/back/process/write.php", { input: year })
+    sendRequest("../app/process/write.php", { input: year })
         .then((res) => {
             if (res == "success") {
-                sendRequest("./app/back/process/read.php", { input: year })
+                sendRequest("../app/process/read.php", { input: year })
                     .then((res) => JSON.parse(res))
                     .then((data) => {
                         $("#display_response").html("");
