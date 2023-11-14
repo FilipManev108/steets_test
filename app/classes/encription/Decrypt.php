@@ -6,7 +6,7 @@ use Encription\Cipher;
 
 class Decrypt extends Cipher
 {
-    private $flag = false;
+    private $encrypt = false;
 
     public function __construct(string $key){
         parent::__construct($key);
@@ -21,7 +21,7 @@ class Decrypt extends Cipher
     }
 
     public function decryptDay(string $string): string {
-        return $this->process($string, $this->flag);
+        return $this->process($string, $this->encrypt);
     }
 
     public function decryptDays(array $arr): array{

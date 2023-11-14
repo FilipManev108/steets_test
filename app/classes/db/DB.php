@@ -25,7 +25,7 @@ class DB {
         return self::$instance;
     }
 
-    public static function write(array $arr): bool {
+    public static function writePrimeYears(array $arr): bool {
         $pdo = DB::connect();
         $req = DB::requisite($arr);
         $stmt = $pdo->prepare($req['sql']);
@@ -54,7 +54,7 @@ class DB {
         return $req;
     }
 
-    public static function read(int $input): array {
+    public static function getPrimeYearsFrom(int $input): array {
         $pdo = DB::connect();
         $sql = 'SELECT * FROM prime_years WHERE year <= :year ORDER BY year DESC LIMIT 30';
         $stmt = $pdo->prepare($sql);

@@ -13,7 +13,12 @@ abstract class Cipher
         $this->key = strtoupper(md5($key));
     }
 
-    //this is a custom encryption method which uses an algorythim based on the 0-255 byte values for the key characters
+
+    /**
+     * this is a custom encryption method which uses 
+     * an algorythim based on the 0-255 byte values 
+     * for the key characters 
+     */
     protected function process(string $string, bool $flag): string {
         $string = $flag ? $string : base64_decode($string);
         $keyArr = str_split($this->key);
