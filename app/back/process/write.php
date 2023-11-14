@@ -5,22 +5,25 @@ use Encription\Encrypt;
 
 require_once './autoload.php';
 
-checkPost();
+if(!checkPostRequest()){
+    echo 'not a post request';
+    die();
+}
 
 $year = (int)$_POST['input'];
 
-$key = getKey();
+$key = getEncryptionKey();
 
-$yr = new Year($year);
+$year = new Year($year);
 
-$en = new Encrypt($key);
+$encriptor = new Encrypt($key);
 
-$yearArr = $yr->processYear();
-$yearArr = $en->encryptDays($yearArr);
+$yearArr = $year->processYear(30);
+$yearArr = $encriptor->encryptDays($yearArr);
 
 
 try {
-    if(DB::write($yearArr)){
+    if(DB::writePrimeYears($yearArr)){
         echo 'success';
         die();
     } else {

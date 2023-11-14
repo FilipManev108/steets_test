@@ -6,15 +6,13 @@ const mainForm = $("#main_form");
 mainForm.submit((e) => {
     e.preventDefault();
     const year = $("#year").val();
-
-    validate(year, $('#error'));
-    // console.log(year)
-    sendRequest("./main/php/process/write.php", { input: year })
+    validate(year, $("#error"));
+    sendRequest("./app/back/process/write.php", { input: year })
         .then((res) => {
             if (res == "success") {
-                sendRequest("./main/php/process/read.php", { input: year })
+                sendRequest("./app/back/process/read.php", { input: year })
                     .then((res) => JSON.parse(res))
-                    .then(data => {
+                    .then((data) => {
                         $("#display_response").html("");
                         let count = 1;
                         data.forEach((e) => {
@@ -26,7 +24,8 @@ mainForm.submit((e) => {
                                                             </tr>`);
                             count++;
                         });
-                        $('table').removeClass('d-none');
+                        $("table").removeClass("d-none");
+                        $("#year").val("");
                     })
                     .catch((e) => {
                         console.log(e);
@@ -36,6 +35,4 @@ mainForm.submit((e) => {
         .catch((e) => {
             console.log(e);
         });
-    
-    
 });

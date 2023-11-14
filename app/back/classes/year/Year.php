@@ -33,9 +33,9 @@ class Year
         return true;
     }
 
-    private function get30PrimeYears(): bool {
+    private function getPrimeYears(int $range): bool {
         $year = $this->year;
-        while (count($this->primeYears) <= 30) {
+        while (count($this->primeYears) <= $range) {
             if($year <= 0){
                 break; //prime numbers cannot be negative
             }
@@ -56,13 +56,13 @@ class Year
         return true;
     }
 
-    public function processYear(): array {
-        $this->get30PrimeYears();
+    public function processYear(int $range): array {
+        $this->getPrimeYears($range);
         $this->getChristmassDays();
         return $this->primeYears;
     }
  
-    public function reset30Prime(): void{
+    public function resetPrimeYears(): void{
         $this->primeYears = [];
     }
 }
