@@ -11,7 +11,6 @@ mainForm.submit((e) => {
     // console.log(year)
     sendRequest("./main/php/process/write.php", { input: year })
         .then((res) => {
-            console.log(res);
             if (res == "success") {
                 sendRequest("./main/php/process/read.php", { input: year })
                     .then((res) => JSON.parse(res))
